@@ -1,0 +1,22 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+<h1>Report Generator Home</h1>
+<p>Welcome Bibb County Administrators!</p>
+<form enctype="multipart/form-data" method="post" action="{% url 'upload_file' %}">
+    {% csrf_token %}
+    {{ upload_form }}
+    <input type="submit" value="Upload">
+</form>
+<ul>
+    {% for row in data %}
+        <li>Thought: {{ row.thought }}. Star: {{ row.star}}. Rank: {{row.rank}}.</li>
+    {% endfor %}
+</ul>
+
+<form action="{% url 'generate_email' %}" method="post">
+    {% csrf_token %}
+    {{ results_form }}
+    <input type="submit" value="Submit">
+</form>
+{% endblock %}
