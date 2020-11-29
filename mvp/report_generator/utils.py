@@ -14,5 +14,10 @@ def handle_uploaded_file(f):
     return data
 
 
-def handle_results(data):
+def handle_results(form):
+    selected = form.cleaned_data['thoughts']
+    choices = dict(form.fields['thoughts'].choices)
+    thoughts = [choices[int(item)] for item in selected]
+    data = form.cleaned_data
+    data['thoughts'] = thoughts
     return data

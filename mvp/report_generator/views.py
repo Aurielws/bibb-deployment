@@ -12,11 +12,10 @@ from .utils import handle_uploaded_file, handle_results
 def index(request):
     """View function for home page of site."""
     upload_form = UploadFileForm()
-    results_form = ResultsForm()
+    results_form = ResultsForm(())
     return render(request, 'index.html', {
         'upload_form': upload_form,
         'results_form': results_form,
-        'data': []
     })
 
 
@@ -25,14 +24,15 @@ def upload_file(request):
     if request.method == 'POST':
         upload_form = UploadFileForm(request.POST, request.FILES)
         if upload_form.is_valid():
-            data = handle_uploaded_file(request.FILES['file'])
-            results_form = ResultsForm()
-            return render(
-                request, 'index.html', {
-                    'upload_form': upload_form,
-                    'results_form': results_form,
-                    'data': data
-                })
+            csv_data = handle_uploaded_file(request.FILES['file'])
+            thought_choices = [(index, row['thought'])
+                               for (index, row) in enumerate(csv_data)]
+            request.session['csv_data'] = csv_data
+            results_form = ResultsForm(thought_choices)
+            return render(request, 'index.html', {
+                'upload_form': upload_form,
+                'results_form': results_form
+            })
         else:
             print(upload_form.errors)
     return HttpResponseRedirect(reverse('index'))
@@ -40,9 +40,12 @@ def upload_file(request):
 
 def generate_email(request):
     if request.method == 'POST':
-        results_form = ResultsForm(request.POST)
+        thought_choices = [(index, row['thought'])
+                           for (index,
+                                row) in enumerate(request.session['csv_data'])]
+        results_form = ResultsForm(thought_choices, request.POST)
         if results_form.is_valid():
-            results_data = handle_results(results_form.cleaned_data)
+            results_data = handle_results(results_form)
             msg_plain = render_to_string('email.txt',
                                          {'results_data': results_data})
             msg_html = render_to_string('email.html',

@@ -3,9 +3,17 @@
 {% block content %}
 <h1>Generated Email</h1>
 
+<h2>Summary</h2>
+<p>{{ results_data.summary }}</p>
+
+<h2>Action</h2>
+<p>{{ results_data.action }}</p>
+
+<h2>Thoughts</h2>
 <ul>
-    <li>Summary: {{ results_data.summary }}</li>
-    <li>Action: {{ results_data.action }}</li>
+    {% for thought in results_data.thoughts %}
+        <li>{{ thought }}</li>
+    {% endfor %}
 </ul>
 
 {% endblock %}

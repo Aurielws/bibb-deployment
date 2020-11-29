@@ -8,11 +8,6 @@
     {{ upload_form }}
     <input type="submit" value="Upload">
 </form>
-<ul>
-    {% for row in data %}
-        <li>Thought: {{ row.thought }}. Star: {{ row.star}}. Rank: {{row.rank}}.</li>
-    {% endfor %}
-</ul>
 
 <form action="{% url 'generate_email' %}" method="post">
     {% csrf_token %}
