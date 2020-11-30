@@ -7,6 +7,7 @@ def handle_uploaded_file(f):
     data = []
     for row in reader:
         data.append({
+            'prompt': row['Exchange question'],
             'thought': row['Thought (original)'],
             "star": row['Star score - overall'],
             "rank": row['Rank - overall']
