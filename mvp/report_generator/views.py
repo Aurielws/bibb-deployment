@@ -4,6 +4,7 @@ from django.urls import reverse
 from django.template.loader import render_to_string
 from django.core.mail import send_mail
 from django.http import HttpResponse
+from django.utils.html import strip_tags
 from .forms import UploadFileForm, ResultsForm
 from .utils import handle_uploaded_file, handle_results
 
@@ -24,7 +25,6 @@ def upload_file(request):
     if request.method == 'POST':
         upload_form = UploadFileForm(request.POST, request.FILES)
         if upload_form.is_valid():
-            print(1)
             csv_data = handle_uploaded_file(request.FILES['file'])
             thought_choices = [(index, row['thought'])
                                for (index, row) in enumerate(csv_data)]
@@ -35,6 +35,7 @@ def upload_file(request):
                 'results_form': results_form
             })
         else:
+            print("INVALID")
             print(upload_form.errors)
     return HttpResponseRedirect(reverse('index'))
 
@@ -47,17 +48,16 @@ def generate_email(request):
         results_form = ResultsForm(thought_choices, request.POST)
         if results_form.is_valid():
             results_data = handle_results(results_form)
-            msg_plain = render_to_string('email.txt',
-                                         {'results_data': results_data})
             msg_html = render_to_string('email.html',
                                         {'results_data': results_data})
+            msg_plain = strip_tags(msg_html)
 
             send_mail('Summary Report',
                       msg_plain,
                       'cs96.test@gmail.com', [results_data['recipient']],
                       html_message=msg_html)
 
-            return HttpResponse('success')
+            return render(request, 'success.html', {'msg_html': msg_html})
         else:
             print(results_form.errors)
     return HttpResponseRedirect(reverse('index'))

@@ -1,15 +1,15 @@
 {% extends "base_generic.html" %}
 
 {% block content %}
-<h1>Generated Email</h1>
+<h3>Generated Email</h3>
 
-<h2>Summary</h2>
+<h3>Summary</h3>
 <p>{{ results_data.summary }}</p>
 
-<h2>Action</h2>
+<h3>Action</h3>
 <p>{{ results_data.action }}</p>
 
-<h2>Thoughts</h2>
+<h3>Thoughts</h3>
 <ul>
     {% for thought in results_data.thoughts %}
         <li>{{ thought }}</li>
