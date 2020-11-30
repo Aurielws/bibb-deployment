@@ -2,11 +2,13 @@ from django.shortcuts import render
 from django.http import HttpResponseRedirect
 from django.urls import reverse
 from django.template.loader import render_to_string
-from django.core.mail import send_mail
 from django.http import HttpResponse
 from django.utils.html import strip_tags
+from pathlib import Path
+from django.conf import settings
+from django.templatetags.static import static
 from .forms import UploadFileForm, ResultsForm
-from .utils import handle_uploaded_file, handle_results
+from .utils import handle_uploaded_file, handle_results, send_email
 
 
 # Create your views here.
@@ -48,16 +50,26 @@ def generate_email(request):
         results_form = ResultsForm(thought_choices, request.POST)
         if results_form.is_valid():
             results_data = handle_results(results_form)
+            recipient = results_data['recipient']
+            sender = 'cs96.test@gmail.com'
+            image_path = 'report_generator/' + static('i/image1.png')
+            print(image_path)
+            image_name = Path(image_path).name
+            subject = 'ThoughtExchange Report | Summary & Response'
+
             msg_html = render_to_string('email.html',
                                         {'results_data': results_data})
             msg_plain = strip_tags(msg_html)
 
-            send_mail('ThoughtExchange Report | Summary & Response',
-                      msg_plain,
-                      'cs96.test@gmail.com', [results_data['recipient']],
-                      html_message=msg_html)
+            send_email(subject=subject,
+                       text_content=msg_plain,
+                       html_content=msg_html,
+                       sender=sender,
+                       recipient=recipient,
+                       image_path=image_path,
+                       image_name=image_name)
 
-            return render(request, 'success.html', {'msg_html': msg_html})
+            return HttpResponseRedirect(reverse('index'))
         else:
             print(results_form.errors)
     return HttpResponseRedirect(reverse('index'))
