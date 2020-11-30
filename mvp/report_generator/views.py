@@ -24,6 +24,7 @@ def upload_file(request):
     if request.method == 'POST':
         upload_form = UploadFileForm(request.POST, request.FILES)
         if upload_form.is_valid():
+            print(1)
             csv_data = handle_uploaded_file(request.FILES['file'])
             thought_choices = [(index, row['thought'])
                                for (index, row) in enumerate(csv_data)]

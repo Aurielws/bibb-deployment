@@ -24,8 +24,10 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('report_generator/', include('report_generator.urls')),
     path('', RedirectView.as_view(url='report_generator/')),
-] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+]
 
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL,
                           document_root=settings.MEDIA_ROOT)
+    urlpatterns += static(settings.STATIC_URL,
+                          document_root=settings.STATIC_ROOT)
