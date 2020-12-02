@@ -1,6 +1,10 @@
 import csv
+import os
 from email.mime.image import MIMEImage
 from django.core.mail import EmailMultiAlternatives
+from pathlib import Path
+from django.template.loader import render_to_string
+from django.utils.html import strip_tags
 
 
 def handle_uploaded_file(f):
@@ -26,19 +30,28 @@ def handle_results(form):
     return data
 
 
-def send_email(subject, text_content, html_content, sender, recipient,
-               image_path, image_name):
+def send_email(results_data):
+    subject = 'ThoughtExchange Report | Summary & Response'
+    sender = 'cs96.test@gmail.com'
+    recipient = results_data['recipient']
+    msg_html = render_to_string('email.html', {'results_data': results_data})
+    msg_plain = strip_tags(msg_html)
+
     email = EmailMultiAlternatives(
         subject=subject,
-        body=text_content,
+        body=msg_plain,
         from_email=sender,
         to=recipient if isinstance(recipient, list) else [recipient])
-    if all([html_content, image_path, image_name]):
-        email.attach_alternative(html_content, "text/html")
-        email.content_subtype = 'html'  # set the primary content to be text/html
-        email.mixed_subtype = 'related'  # it is an important part that ensures embedding of an image
+
+    image_path = os.path.join(os.path.dirname(__file__), 'static/i/image1.png')
+    image_name = Path(image_path).name
+    if all([msg_html, image_path, image_name]):
+        email.attach_alternative(msg_html, "text/html")
+        email.mixed_subtype = 'related'
         with open(image_path, mode='rb') as f:
             image = MIMEImage(f.read())
-            email.attach(image)
+            f.close()
             image.add_header('Content-ID', f"<{image_name}>")
+            email.attach(image)
+
     email.send()
