@@ -126,7 +126,7 @@ STATIC_URL = '/static/'
 
 # Specify static files location
 STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static'), )
-STATIC_ROOT = (os.path.join(BASE_DIR, "staticfiles"), )
+STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
 
 # Email settings
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
