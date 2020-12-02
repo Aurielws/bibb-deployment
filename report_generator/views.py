@@ -51,7 +51,7 @@ def generate_email(request):
                                         {'results_data': results_data})
             msg_plain = strip_tags(msg_html)
 
-            send_mail('Summary Report',
+            send_mail('ThoughtExchange Report | Summary & Response',
                       msg_plain,
                       'cs96.test@gmail.com', [results_data['recipient']],
                       html_message=msg_html)
