@@ -1,0 +1,61 @@
+
+{% extends "base_generic.html" %}
+
+{% load widget_tweaks %}
+
+{% block title %}
+<title>CS96</title>
+{% endblock %}
+
+{% block header %}
+
+<header class="pt-195 pb-110 bg-light header_1">
+    <nav class="header_menu_1 pt-30 pb-30 mt-30">
+        <div class="container px-xl-0">
+            <div class="row justify-content-center align-items-center f-18 medium">
+                <div class="col-lg-3 logo">
+                    <span> Harvard CS96 </span>
+                </div>
+                <div class="col-lg-3 col-md-4 col-sm-6 d-flex justify-content-end align-items-center">
+                    <a href="{% url 'index' %}" class="btn sm action-1"> Start Over</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <div class="container">
+        <div class="mb-3 logo d-block d-xl-none text-center logo_mobile">
+            Harvard CS96
+        </div>
+        <div class="mw-600 mx-auto mt-30 f-22 color-heading text-center text-adaptive">
+            Your report has been sent to the email address specified. See generated email below.
+        </div>
+    </div>
+</header>
+
+{% endblock %}
+
+
+{% block content %}
+<div class="container">
+    <section class="bg-light form_2">
+        <div class="container px-xl-0">
+            <div class="row justify-content-center text-center text-md-left">
+                {{ msg_html }}
+                <!--<div class="col-lg-5 col-md-6 col-sm-10">
+                    
+                </div>-->
+            </div>
+        </div>
+    </section>
+</div>
+
+
+<footer class="page-footer font-small">
+
+    <!-- Copyright -->
+    <div class="footer-copyright text-center py-3">CS96 2020</div>
+    <!-- Copyright -->
+
+</footer>
+
+{% endblock %}
