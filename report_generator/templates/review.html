@@ -1,0 +1,65 @@
+{% extends "base_generic.html" %}
+
+{% load widget_tweaks %}
+
+{% block content %}
+
+<section class="bg-light form_2">
+    <div class="mb-25 f-30 font-weight-bold text-center">
+        Thoughtexchange prompt:
+    </div>
+    <div class="col-lg-6 mx-auto mb-25 f-24 color-heading text-center">
+        {{ prompt }}
+    </div>
+    <div class="container px-xl-0">
+        <div class="row justify-content-center text-center text-md-left">
+            <div class="col-lg-8 col-md-6 col-sm-10">
+                <div class="mx-auto mb-25 f-30 font-weight-bold">
+                    Responses
+                </div>
+                <div class="mx-auto mb-25 f-20 color-heading">
+                    You may select any of the following responses to be featured in the report.
+                </div>
+                <form action="{% url 'preview' %}" method="post">
+                    {% csrf_token %}
+                    <div class="mb-25">
+                        {% for check in results_form.thoughts %}
+                        <div class="form-check f-18 mb-10">
+                            {{ check}}
+                        </div>
+                        {% endfor %}
+                    </div>
+                    <div class="mx-auto mb-25 f-30 font-weight-bold">
+                        Administrative Response
+                    </div>
+                    <div class="mx-auto mb-25 f-20 color-heading">
+                        Summarize the feedback you have received and respond with details on what actions, if any, are being taken.
+                    </div>
+                    <div class="mb-25">
+                        <div class="mb-10 f-14 semibold text-uppercase sp-20">
+                            Summary
+                        </div>
+                        {% render_field results_form.summary placeholder="Your summary" class="form-control focus-action-1 color-heading placeholder-gray text-center text-md-left" %}
+                    </div>
+                    <div class="mb-25">
+                        <div class="mb-10 f-14 semibold text-uppercase sp-20">
+                            Response
+                        </div>
+                        {% render_field results_form.action placeholder="Your action items from this thought exchange" class="form-control focus-action-1 color-heading placeholder-gray text-center text-md-left" %}
+                    </div>
+                    <div class="mw-500 mx-auto mt-50 mb-25 f-20 color-heading text-center">
+                        Ready to share your report?<br>Enter an email to send this report to yourself or a mailing list.
+                    </div>
+                    <div class="col-lg-6 mx-auto align-items-center">
+                        {% render_field results_form.recipient placeholder="Your email" class="input mb-25 w-full lg border-gray focus-action-1 color-heading placeholder-gray text-center text-md-left" %}
+                    </div>
+                    <div class="align-items-center buttons text-center my-20 action-1 w-full">
+                        <input type="submit" value="Email me my report!" class="btn action-1" />
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock %}

@@ -11,14 +11,16 @@ def handle_uploaded_file(f):
     decoded_file = f.read().decode('utf-8').splitlines()
     reader = csv.DictReader(decoded_file)
     data = []
+    prompt = ""
     for row in reader:
+        if prompt == "":
+            prompt = row['Exchange question']
         data.append({
-            'prompt': row['Exchange question'],
             'thought': row['Thought (original)'],
             "star": row['Star score - overall'],
             "rank": row['Rank - overall']
         })
-    return data
+    return (data, prompt)
 
 
 def handle_results(form):

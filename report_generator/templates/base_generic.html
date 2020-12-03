@@ -4,12 +4,12 @@
 <html lang="en">
 
 <head>
-  {% block title %}<title>Report Generator</title>{% endblock %}
+  {% block title %}<title>Thought Exchange Feedback Report</title>{% endblock %}
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   <!--Correct import-->
-  <link rel="icon" href="{% static 'i/color-veritas.png' %}" type="image/x-icon" />
+  <link rel="icon" href="{% static 'i/logo.png' %}" type="image/x-icon" />
   <!-- Google Fonts -->
   <link
       href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@100;200;300;400;500;600;700;800;900&family=DM+Sans:wght@100;200;300;400;500;600;700;800;900&display=swap"
@@ -30,11 +30,33 @@
   <link href="{% static 'css/style.min.css' %}" rel="stylesheet" />
   <!-- jQuery 3.5.1 -->
   <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+
+  {% block style %}{% endblock %}
 </head>
 
-<body>
-  {% block header %}{% endblock %}
+<body class="d-flex flex-column min-vh-100">
+  {% block header %}
+  <header class="pt-60 pb-60 bg-light header_1">
+    <div class="row pb-30 justify-content-center align-items-center f-18 medium">
+      <img alt="bibb-county-header" src="{% static 'i/header.jpg' %}">
+    </div>
+
+    <div class="container">
+      <h1 class="display-4 font-weight-bold f-40 mw-600 mx-auto text-center text-adaptive">
+        Thoughtexchange Feedback Report
+      </h1>
+      <div class="mw-600 mx-auto mt-30 f-20 color-heading text-center text-adaptive">
+        Easily view, summarize, and respond to the results of your latest Thoughtexchange.
+      </div>
+    </div>
+  </header>
+  {% endblock %}
   {% block content %}{% endblock %}
+  {% block footer %}
+  <footer class="page-footer mt-auto font-small">
+    <div class="footer-copyright text-center py-3">Bibb County School District – 2020</div>
+  </footer>
+  {% endblock %}
 </body>
 
 </html>
