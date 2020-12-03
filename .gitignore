@@ -65,6 +65,8 @@ coverage.xml
 *.cover
 .hypothesis/
 
+*/__pycache__/
+
 # Jupyter Notebook
 .ipynb_checkpoints
 
