@@ -1,12 +1,9 @@
 from django.shortcuts import render
 from django.http import HttpResponseRedirect
 from django.urls import reverse
-from django.template.loader import render_to_string
-from django.core.mail import send_mail
 from django.http import HttpResponse
-from django.utils.html import strip_tags
 from .forms import UploadFileForm, ResultsForm
-from .utils import handle_uploaded_file, handle_results
+from .utils import handle_uploaded_file, handle_results, send_email
 
 
 # Create your views here.
@@ -47,16 +44,9 @@ def generate_email(request):
         results_form = ResultsForm(thought_choices, request.POST)
         if results_form.is_valid():
             results_data = handle_results(results_form)
-            msg_html = render_to_string('email.html',
-                                        {'results_data': results_data})
-            msg_plain = strip_tags(msg_html)
-
-            send_mail('Summary Report',
-                      msg_plain,
-                      'cs96.test@gmail.com', [results_data['recipient']],
-                      html_message=msg_html)
-
-            return render(request, 'success.html', {'msg_html': msg_html})
+            send_email(results_data)
+            return render(request, 'email.html',
+                          {'results_data': results_data})
         else:
             print(results_form.errors)
     return HttpResponseRedirect(reverse('index'))
