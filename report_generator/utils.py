@@ -7,6 +7,7 @@ def handle_uploaded_file(f):
     data = []
     for row in reader:
         data.append({
+            'question': row['\ufeffExchange question'],
             'thought': row['Thought (original)'],
             "star": row['Star score - overall'],
             "rank": row['Rank - overall']

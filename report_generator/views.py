@@ -7,7 +7,7 @@ from django.http import HttpResponse
 from django.utils.html import strip_tags
 from .forms import UploadFileForm, ResultsForm
 from .utils import handle_uploaded_file, handle_results
-
+from datetime import date
 
 # Create your views here.
 def index(request):
@@ -47,11 +47,15 @@ def generate_email(request):
         results_form = ResultsForm(thought_choices, request.POST)
         if results_form.is_valid():
             results_data = handle_results(results_form)
+            question = request.session['csv_data'][0]['question']
             msg_html = render_to_string('email.html',
-                                        {'results_data': results_data})
+                                        {'results_data': results_data,
+                                        'question': question})
             msg_plain = strip_tags(msg_html)
 
-            send_mail('ThoughtExchange Report | Summary & Response',
+            today = date.today()
+
+            send_mail(today.strftime("%m/%d/%y") + ' ' + 'ThoughtExchange Report | Summary & Response',
                       msg_plain,
                       'cs96.test@gmail.com', [results_data['recipient']],
                       html_message=msg_html)
