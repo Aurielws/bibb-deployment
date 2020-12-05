@@ -1,0 +1,41 @@
+{% extends "base_generic.html" %}
+
+{% load widget_tweaks %}
+
+{% block content %}
+
+<section class="bg-light">
+    <div class="container px-xl-0">
+        <div class="row justify-content-center text-center text-md-left">
+            <div class="col-lg-5 col-md-6 col-sm-10">
+                <form enctype="multipart/form-data" method="post" action="{% url 'upload_file' %}">
+                    {% csrf_token %}
+                    <div class="form-group">
+                        <div class="custom-file">
+                            {% render_field upload_form.file class="custom-file-input" %}
+                            <label class="custom-file-label" for="id_file">Choose file</label>
+                            <script>
+                                $('#id_file').on('change', function () {
+                                    //get the file name
+                                    var fileName = $(this).val().replace('C:\\fakepath\\', " ");
+                                    //replace the "Choose a file" label
+                                    $(this).next('.custom-file-label').html(fileName);
+                                })
+                            </script>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="align-items-center buttons text-center mt-25 action-1 w-full">
+                            <input type="submit" value="Upload" class="btn action-1" />
+
+                            <a href="#" class="link mt-15 action-1 f-18 medium"><u>Need help? See these instructions for exporting a CSV file from Thoughtexchange</u>
+                            </a>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock %}
