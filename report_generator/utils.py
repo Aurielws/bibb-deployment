@@ -15,7 +15,7 @@ def handle_uploaded_file(f):
     prompt = ""
     for row in reader:
         if prompt == "":
-            prompt = row['Exchange question']
+            prompt = row['\ufeffExchange question']
         data.append({
             'thought': row['Thought (original)'],
             "star": row['Star score - overall'],
