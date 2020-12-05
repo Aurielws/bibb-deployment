@@ -1,4 +1,5 @@
 <html>
+<<<<<<< HEAD
 
 <head>
     <meta content="text/html; charset=UTF-8" http-equiv="content-type" />
@@ -154,3 +155,156 @@
 </body>
 
 </html>
+=======
+  <head>
+    <meta content="text/html; charset=UTF-8" http-equiv="content-type" />
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"
+      integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu"
+      crossorigin="anonymous"
+    />
+    <!-- Optional theme -->
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap-theme.min.css"
+      integrity="sha384-6pzBo3FDv/PJ8r2KRkGHifhEocL+1X2rVCTTkUfGk7/0pbek5mMa1upzvWbrUbOZ"
+      crossorigin="anonymous"
+    />
+    <style type="text/css">
+      .email_body {
+        margin: 30px;
+        font-family: "Helvetica Neue"
+        /*font-family: Verdana, Geneva, Tahoma, sans-serif;*/
+      }
+      .subject {
+        font-size: 18px;
+        padding-bottom: 20px;
+      }
+      .header {
+        /*background-color: ;*/
+        color: #164069;
+        border-radius: 13px;
+        /*width: 95%;*/
+        /*right: 0px;*/
+        margin-bottom: 20px;
+      }
+      h2 {
+        font-size: 30px;
+        padding-left: 10px;
+        padding-right: 10px;
+      }
+      h5 {
+        font-size: 20px;
+        padding-left: 10px;
+        padding-right: 10px;
+      }
+      .img_container {
+        margin: auto;
+        text-align: center;
+        display: block;
+      }
+      h3 {
+        margin-top: 0px;
+        color: #164069;
+      }
+      h4 {
+        color: #164069;
+      }
+      .feedback_sum {
+        background-color: #fae66f;
+        border-radius: 10px;
+        padding: 10px;
+        margin-bottom: 10px;
+      }
+      .responses {
+        background-color: #fae66f;
+        border-radius: 10px;
+        padding: 10px;
+
+      }
+
+      li {
+        padding:10px;
+        font-style: italic;
+      }
+
+      rowList{
+        padding:10px;
+        font-style: italic;
+      }
+
+      /*li:nth-child(even) {*/
+      /*  background-color: thistle;*/
+      /*}*/
+      /*li:nth-child(odd) {*/
+      /*  background-color: lightcyan;*/
+      /*}*/
+    </style>
+  </head>
+  <body>
+    <div class="email_body">
+      <!--<h1 class="subject">
+        Subject Line: INSERT DATE ThoughtExchange Report | Summary &amp; Response
+      </h1>-->
+      <div class="container">
+        <div class="row header">
+          <div class="col-sm-3">
+            <img alt="" src="logo.png" />
+          </div>
+          <div class="col-sm-8">
+            <div class="row">
+              <h2>Bibb County School District</h2>
+            </div>
+            <div class="row">
+              <h5>ThoughtExchange Report</h5>
+            </div>
+          </div>
+        </div>
+      </div>
+      <p>Hello,</p>
+      <p>
+        We hope this email finds you well. The following is a summary of the
+        ThoughtExchange forum featuring the prompt <i>{{question}}</i> and includes feedback
+        responses from our district.
+      </p>
+      <div class="container">
+        <div class="row">
+          <div class="col-sm-5 feedback_sum">
+            <h3>Feedback Summary:</h3>
+            <div>
+              {{ results_data.summary }}
+            </div>
+          </div>
+          <div class="col-sm-1"></div>
+          <div class="col-sm-5 responses">
+            <h3>District Response:</h3>
+            <div>
+              {{ results_data.action }}
+            </div>
+          </div>
+        </div>
+      </div>
+      <h4>
+        Additionally, here are a few notable ThoughtExchange responses from our
+        community:
+      </h4>
+      <div class="thoughts">
+        <ul>
+          {% for thought in results_data.thoughts %}
+          <li>
+            {{ thought }}
+          </li>
+          {% endfor %}
+        </ul>
+      </div>
+      <p>
+        Thank you all for your participation, and please let us know if you have
+        any additional questions or concerns.
+      </p>
+      <p>Sincerely,</p>
+      <p>The Bibb County School District</p>
+    </div>
+  </body>
+</html>
+>>>>>>> 24a10f37c199e149676d6ec48fbd1b87be68bdc3

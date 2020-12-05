@@ -5,24 +5,20 @@ from django.core.mail import EmailMultiAlternatives
 from pathlib import Path
 from django.template.loader import render_to_string
 from django.utils.html import strip_tags
-from datetime import date
 
 
 def handle_uploaded_file(f):
     decoded_file = f.read().decode('utf-8').splitlines()
     reader = csv.DictReader(decoded_file)
     data = []
-    prompt = ""
     for row in reader:
-        if prompt == "":
-            prompt = row['Exchange question']
         data.append({
-            'question': row['\ufeffExchange question'],
+            'prompt': row['Exchange question'],
             'thought': row['Thought (original)'],
             "star": row['Star score - overall'],
             "rank": row['Rank - overall']
         })
-    return (data, prompt)
+    return data
 
 
 def handle_results(form):
@@ -35,8 +31,7 @@ def handle_results(form):
 
 
 def send_email(results_data):
-    today = date.today().strftime("%m/%d/%y")
-    subject = f'{today} ThoughtExchange Report | Summary & Response'
+    subject = 'ThoughtExchange Report | Summary & Response'
     sender = 'cs96.test@gmail.com'
     recipient = results_data['recipient']
     msg_html = render_to_string('email.html', {'results_data': results_data})
@@ -48,14 +43,15 @@ def send_email(results_data):
         from_email=sender,
         to=recipient if isinstance(recipient, list) else [recipient])
 
-    image_path = 'static/i/logo.png'
-    if all([msg_html, image_path]):
+    image_path = os.path.join(os.path.dirname(__file__), 'static/i/image1.png')
+    image_name = Path(image_path).name
+    if all([msg_html, image_path, image_name]):
         email.attach_alternative(msg_html, "text/html")
         email.mixed_subtype = 'related'
         with open(image_path, mode='rb') as f:
             image = MIMEImage(f.read())
             f.close()
-            image.add_header('Content-ID', "<logo>")
+            image.add_header('Content-ID', f"<{image_name}>")
             email.attach(image)
 
     email.send()
