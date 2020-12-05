@@ -46,30 +46,12 @@ def preview(request):
         if results_form.is_valid():
             results_data = handle_results(results_form)
             results_data['prompt'] = request.session['prompt']
-            msg_html = render_to_string('email.html', {
-                'results_data': results_data,
-                'image_path': "cid:logo"
-            })
-            website_msg_html = render_to_string(
-                'email.html', {
-                    'results_data': results_data,
-                    'image_path': "{% static 'i/logo.png'%}"
-                })
+            results_data['image_path'] = "cid:logo"
+            website_msg_html = render_to_string('web_email.html',
+                                                {'results_data': results_data})
             send_email(results_data)
             return render(request, 'success.html',
                           {'msg_html': website_msg_html})
         else:
             print(results_form.errors)
     return HttpResponseRedirect(reverse('index'))
-
-
-# def send_email(request):
-#     print(request)
-#     if request.method == 'POST':
-#         email_form = EmailForm(request.POST)
-#         if email_form.is_valid():
-#             results_data['recipient'] = email_form.cleaned_data['recipient']
-#             send_email(results_data)
-#     else:
-#         print(email_form.errors)
-#     return HttpResponseRedirect(reverse('index'))

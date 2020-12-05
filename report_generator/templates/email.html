@@ -1,118 +1,141 @@
-{% extends "base_generic.html" %}
+<html>
 
-{% load static %}
+<head>
+    <meta content="text/html; charset=UTF-8" http-equiv="content-type" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"
+        integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous" />
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap-theme.min.css"
+        integrity="sha384-6pzBo3FDv/PJ8r2KRkGHifhEocL+1X2rVCTTkUfGk7/0pbek5mMa1upzvWbrUbOZ" crossorigin="anonymous" />
+    <style type="text/css">
+        .email_body {
+            margin: 30px;
+            font-family: "Helvetica Neue"
+                /*font-family: Verdana, Geneva, Tahoma, sans-serif;*/
+        }
 
-{% block header %}{% endblock %}
+        .subject {
+            font-size: 18px;
+            padding-bottom: 20px;
+        }
 
-{% block style %}
+        .header {
+            /*background-color: ;*/
+            color: #164069;
+            border-radius: 13px;
+            /*width: 95%;*/
+            /*right: 0px;*/
+            margin-bottom: 20px;
+        }
 
-<style type="text/css">
-    .email-body {
-        font-family: Verdana, Geneva, Tahoma, sans-serif;
-    }
+        h2 {
+            font-size: 30px;
+            padding-left: 10px;
+            padding-right: 10px;
+        }
 
-    .email-header {
-        background-color: #164069;
-        color: white;
-        border-radius: 13px;
-        /*width: 95%;*/
-        right: 0px;
-        margin-bottom: 20px;
-    }
+        h5 {
+            font-size: 20px;
+            padding-left: 10px;
+            padding-right: 10px;
+        }
 
-    h5 {
-        padding-left: 10px;
-        padding-right: 10px;
-    }
+        .img_container {
+            margin: auto;
+            text-align: center;
+            display: block;
+        }
 
-    .img_container {
-        margin: auto;
-        text-align: center;
-        display: block;
-    }
+        h3 {
+            margin-top: 0px;
+            color: #164069;
+        }
 
-    .email-heading-color {
-        color: #164069;
-    }
+        h4 {
+            color: #164069;
+        }
 
-    .feedback_sum {
-        background-color: #fae66f;
-        border-radius: 10px;
-        padding: 10px;
-        margin-bottom: 10px;
-    }
+        .feedback_sum {
+            background-color: #fae66f;
+            border-radius: 10px;
+            padding: 10px;
+            margin-bottom: 10px;
+        }
 
-    .responses {
-        background-color: #fae66f;
-        border-radius: 10px;
-        padding: 10px;
+        .responses {
+            background-color: #fae66f;
+            border-radius: 10px;
+            padding: 10px;
 
-    }
+        }
 
-    li {
-        padding: 10px;
-        font-style: italic;
-    }
+        li {
+            padding: 10px;
+            font-style: italic;
+        }
 
-    rowList {
-        padding: 10px;
-        font-style: italic;
-    }
-</style>
+        rowList {
+            padding: 10px;
+            font-style: italic;
+        }
 
-{% endblock %}
+        /*li:nth-child(even) {*/
+        /*  background-color: thistle;*/
+        /*}*/
+        /*li:nth-child(odd) {*/
+        /*  background-color: lightcyan;*/
+        /*}*/
+    </style>
+</head>
 
-{% block content %}
-    <div class="m-30 email-body">
-        <div class="p-30 container">
-            <div class="row email-header align-items-center">
+<body>
+    <div class="email_body">
+        <!--<h1 class="subject">
+        Subject Line: INSERT DATE ThoughtExchange Report | Summary &amp; Response
+      </h1>-->
+        <div class="container">
+            <div class="row header">
                 <div class="col-sm-3">
-                    <img class="mh-80" alt="" src="{{ image_path }}"/>
+                    <img alt="" src="{{ results_data.image_path }}"/>
                 </div>
-                <div class="col">
+                <div class="col-sm-8">
                     <div class="row">
-                        <div class="px-10 f-24 font-weight-bold">
-                            Bibb County School District
-                        </div>
+                        <h2>Bibb County School District</h2>
                     </div>
                     <div class="row">
-                        <h5>Thoughtexchange Report</h5>
+                        <h5>ThoughtExchange Report</h5>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="f-14 mb-10">
-            Hello,
-        </div>
-        <div class="f-14 mb-10">
-            We hope this email finds you well. The following is a summary of the Thoughtexchange forum on "{{ results_data.prompt }}" including feedback responses from our district.
-        </div>
+        <p>Hello,</p>
+        <p>
+            We hope this email finds you well. The following is a summary of the
+            ThoughtExchange forum featuring the prompt <i>"{{ results_data.prompt }}"</i> and includes feedback
+            responses from our district.
+        </p>
         <div class="container">
             <div class="row">
                 <div class="col-sm-5 feedback_sum">
-                    <div class="f-20 email-heading-color">
-                    Feedback Summary:
-                    </div>
-                    <div class="f-14">
+                    <h3>Feedback Summary:</h3>
+                    <div>
                         {{ results_data.summary }}
                     </div>
                 </div>
                 <div class="col-sm-1"></div>
                 <div class="col-sm-5 responses">
-                    <div class="f-20 email-heading-color">
-                        District Response:
-                    </div>
-                    <div class="f-14">
+                    <h3>District Response:</h3>
+                    <div>
                         {{ results_data.action }}
                     </div>
                 </div>
             </div>
         </div>
-        <div class="f-16 mb-10 email-heading-color">
-            Additionally, here are a few notable Thoughtexchange responses from our
+        <h4>
+            Additionally, here are a few notable ThoughtExchange responses from our
             community:
-        </div>
-        <div class="thoughts f-14 mb-10">
+        </h4>
+        <div class="thoughts">
             <ul>
                 {% for thought in results_data.thoughts %}
                 <li>
@@ -121,13 +144,13 @@
                 {% endfor %}
             </ul>
         </div>
-        <div class="f-14 mb-10">
+        <p>
             Thank you all for your participation, and please let us know if you have
             any additional questions or concerns.
-        </div>
-        <div class="f-14 mb-10">Sincerely,</div>
-        <div class="f-14 mb-10">The Bibb County School District</div>
+        </p>
+        <p>Sincerely,</p>
+        <p>The Bibb County School District</p>
     </div>
-{% endblock %}
+</body>
 
-{% block footer %}{% endblock %}
+</html>

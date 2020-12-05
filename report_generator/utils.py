@@ -5,6 +5,7 @@ from django.core.mail import EmailMultiAlternatives
 from pathlib import Path
 from django.template.loader import render_to_string
 from django.utils.html import strip_tags
+from datetime import date
 
 
 def handle_uploaded_file(f):
@@ -33,7 +34,8 @@ def handle_results(form):
 
 
 def send_email(results_data):
-    subject = 'ThoughtExchange Report | Summary & Response'
+    today = date.today().strftime("%m/%d/%y")
+    subject = f'{today} ThoughtExchange Report | Summary & Response'
     sender = 'cs96.test@gmail.com'
     recipient = results_data['recipient']
     msg_html = render_to_string('email.html', {'results_data': results_data})
