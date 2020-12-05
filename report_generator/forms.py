@@ -21,3 +21,7 @@ class ResultsForm(forms.Form):
                              max_length=1000,
                              widget=forms.Textarea)
     recipient = forms.EmailField(label="Email recipient here:")
+
+
+class EmailForm(forms.Form):
+    recipient = forms.EmailField(label="Email recipient here:")

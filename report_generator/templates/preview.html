@@ -1,0 +1,26 @@
+{% extends "base_generic.html" %}
+
+{% load widget_tweaks %}
+
+{% block content %}
+<section class="bg-light form_2">
+    <div class="mb-25 f-20 color-heading text-center">
+        Your report has been sent tot hte email address specified. See generated email below.
+    </div>
+</section>
+
+<div class="mx-auto col-lg-8 mb-25">
+    {{ msg_html }}
+</div>
+
+<section class="bg-light form_2">
+    <div class="mb-25 f-30 font-weight-bold text-center">
+        Ready to share your report?
+    </div>
+    <div class="mb-25 f-20 color-heading text-center">
+        Enter an email to send this report to yourself or a mailing list.
+    </div>
+
+</section>
+
+{% endblock %}
