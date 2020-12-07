@@ -2,6 +2,8 @@
 
 {% load widget_tweaks %}
 
+{% load crispy_forms_tags %}
+
 {% block content %}
 
 <section class="bg-light form_2">
@@ -23,11 +25,9 @@
                 <form action="{% url 'preview' %}" method="post">
                     {% csrf_token %}
                     <div class="mb-25">
-                        {% for check in results_form.thoughts %}
                         <div class="form-check f-18 mb-10">
-                            {{ check}}
+                            {% crispy results_form %}
                         </div>
-                        {% endfor %}
                     </div>
                     <div class="mx-auto mb-25 f-30 font-weight-bold">
                         Administrative Response

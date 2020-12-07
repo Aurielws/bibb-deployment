@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'report_generator',
     'widget_tweaks',
+    'crispy_forms'
 ]
 
 MIDDLEWARE = [
@@ -137,3 +138,6 @@ EMAIL_HOST_USER = 'cs96.test@gmail.com'
 EMAIL_HOST_PASSWORD = 'cs96pass!'
 
 SESSION_ENGINE = 'django.contrib.sessions.backends.file'
+
+# Use Django crispy forms
+CRISPY_TEMPLATE_PACK = 'bootstrap'

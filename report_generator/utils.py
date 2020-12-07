@@ -25,9 +25,13 @@ def handle_uploaded_file(f):
 
 
 def handle_results(form):
-    selected = form.cleaned_data['thoughts']
-    choices = dict(form.fields['thoughts'].choices)
-    thoughts = [choices[int(item)] for item in selected]
+    categories = ["thoughts4", "thoughts3", "thoughts2", "thoughts1", "thoughts0"]
+    thoughts = []
+    for category in categories:
+        selected = form.cleaned_data[category]
+        choices = dict(form.fields[category].choices)
+        for item in selected:
+            thoughts.append(choices[int(item)])
     data = form.cleaned_data
     data['thoughts'] = thoughts
     return data
