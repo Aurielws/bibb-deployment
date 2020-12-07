@@ -9,13 +9,13 @@ from datetime import date
 
 
 def handle_uploaded_file(f):
-    decoded_file = f.read().decode('utf-8').splitlines()
+    decoded_file = f.read().decode('utf-8-sig').splitlines()
     reader = csv.DictReader(decoded_file)
     data = []
     prompt = ""
     for row in reader:
         if prompt == "":
-            prompt = row['\ufeffExchange question']
+            prompt = row['Exchange question']
         data.append({
             'thought': row['Thought (original)'],
             "star": row['Star score - overall'],
