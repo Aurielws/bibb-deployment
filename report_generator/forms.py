@@ -1,6 +1,6 @@
 from django import forms
 from django.forms import ModelForm
-from crispy_forms.bootstrap import Tab, TabHolder
+from crispy_forms.bootstrap import Tab, TabHolder, Field
 from crispy_forms.helper import FormHelper
 from crispy_forms.layout import Submit, Layout
 
@@ -24,18 +24,14 @@ class ResultsForm(forms.Form):
 
         self.helper = FormHelper()
         self.helper.form_tag = False
+        self.helper.form_show_labels = False
         self.helper.layout = Layout(
             TabHolder(
-                Tab('4-5 Stars',
-                    'thoughts4'),
-                Tab('3-4 Stars',
-                    'thoughts3'),
-                Tab('2-3 Stars',
-                    'thoughts2'),
-                Tab('1-2 Stars',
-                    'thoughts1'),
-                Tab('0-1 Stars',
-                    'thoughts0')
+                Tab('4-5 Stars', 'thoughts4'),
+                Tab('3-4 Stars', 'thoughts3'),
+                Tab('2-3 Stars', 'thoughts2'),
+                Tab('1-2 Stars', 'thoughts1'),
+                Tab('0-1 Stars', 'thoughts0')
             )
         )
 

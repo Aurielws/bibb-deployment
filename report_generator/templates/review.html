@@ -25,8 +25,17 @@
                 <form action="{% url 'preview' %}" method="post">
                     {% csrf_token %}
                     <div class="mb-25">
-                        <div class="form-check f-18 mb-10">
+                        <div class="form-check f-18 mb-10 tab-container">
                             {% crispy results_form %}
+                            <script>
+                                let ids = ['#div_id_thoughts0', '#div_id_thoughts1', '#div_id_thoughts2', '#div_id_thoughts3', '#div_id_thoughts4'];
+                                ids.forEach(function (item, i) {
+                                    let div = $(item).find("div:first");
+                                    if (div.children().length == 0) {
+                                        div.text("None.");
+                                    }
+                                });
+                            </script>
                         </div>
                     </div>
                     <div class="mx-auto mb-25 f-30 font-weight-bold">
