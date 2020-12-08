@@ -23,7 +23,7 @@ def upload_file(request):
         upload_form = UploadFileForm(request.POST, request.FILES)
         if upload_form.is_valid():
             csv_data, prompt = handle_uploaded_file(request.FILES['file'])
-            thought_choices = [(index, row['thought'])
+            thought_choices = [[index, row['thought'], row['star']]
                                for (index, row) in enumerate(csv_data)]
             request.session['csv_data'] = csv_data
             request.session['prompt'] = prompt
@@ -34,12 +34,12 @@ def upload_file(request):
             })
         else:
             print(upload_form.errors)
-    return HttpResponseRedirect(reverse('index'))
+            return HttpResponseRedirect(reverse('index'))
 
 
 def preview(request):
     if request.method == 'POST':
-        thought_choices = [(index, row['thought'])
+        thought_choices = [[index, row['thought'], row['star']]
                            for (index,
                                 row) in enumerate(request.session['csv_data'])]
         results_form = ResultsForm(thought_choices, request.POST)
