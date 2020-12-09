@@ -1,0 +1,52 @@
+{% extends "base_generic.html" %}
+
+{% load widget_tweaks %}
+
+{% block content %}
+
+<section class ="bg-light form_2">
+    <div class ="container px_xl_0">
+        <div class ="row justify-content-center text-center text-md-left">
+            <div class = "col-lg-8 col-md-10 col-sm-15">
+                <h2 class="mb-45 small">
+                    Instructions
+                </h2>
+                <div>
+                    <div class = "mb-10 f-14 semibold sp-20">
+                        <ol>
+                            <li class="mb-15">
+                                First, download your raw data from Thoughtexchange by going under 'Reports' 
+                                in your Thoughtexchange dashboard and clicking the 'Generate' button under the 
+                                section of the page titled'Data Download.' 
+                            </li>
+                            <li class="mb-15">
+                                After completing the download, you will receive a ZIP file contaning 3 CSV files,
+                                or spreadsheets. Unzip this file and locate the file titled 'exchangedata.csv' within
+                                the resulting folder. This is the file that you will upload to the Thoughtexchange 
+                                Feedback Report generator. 
+
+                            </li>
+                            <li class="mb-15">
+                                Before uploading, make sure that the 'exchangedata.csv' file has not been edited and 
+                                that the first row is formatted as follows: 'Exchange question', 'Thought (original)',
+                                'Star score - overall', 'Rank - overall', 'Moderation status', 'Moderation Reported by'.
+                                Note that each phrase separated by a comma represents a column in the CSV file.
+                            </li>
+                            <li class="mb-15">
+                                You are now ready to use the Thoughtexchange Feedback Report generator! Just upload your
+                                file and the report will be generated. 
+                            </li>
+                        </ol>
+                    </div>
+                </div>
+                <div class="text-center mb-30">
+                    <a href="{% url 'index' %}" class="link mt-15 action-1 f-18 medium"><u>
+                        Return to home page</u>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock %}
