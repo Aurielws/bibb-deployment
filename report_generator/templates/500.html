@@ -1,0 +1,37 @@
+{% extends "base_generic.html" %}
+
+{% load widget_tweaks %} 
+
+{% block content %}
+
+<section class="bg-light form_2">
+    <div class="container px_xl_0">
+        <div class="row justify-content-center text-center text-md-left">
+            <div class="col-lg-10 col-md-12 col-sm-20">
+                <h1 class="font-weight-bold mb-50">
+                    Oops, something seems to have gone wrong!
+                </h1>
+            </div>
+            <div class="col-lg-18 col-md-10 col-sm-15">
+                <p class="mb-30">
+                    Make sure that you are uploading the unedited 'exchangedata.csv' file from the 
+                    Thoughtexchange dashboard to the Feedback Report generator!  
+                </p>
+                
+            </div>
+        </div>
+        <div class="row justify-content-center text-center">
+            <a href="{% url 'instructions' %}" class="link mt-15 action-1 f-18 medium"><u>
+                See the instructions for exporting a CSV file from Thoughtexchange.</u>
+            </a>
+        </div> 
+        <div class="text-center mb-30">
+            <a href="{% url 'index' %}" class="link mt-15 action-1 f-18 medium"><u>
+                Return to home page</u>
+            </a>
+        </div>
+    </div>
+
+</section>
+
+{% endblock %}
