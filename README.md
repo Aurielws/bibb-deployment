@@ -20,9 +20,15 @@
 
 ### Report Generator Template HTML Files
 
+`report_generator/template/upload.html` - HTML page for uploading a file to the site
 
+`report_generator/template/instructions.html` - HTML page that contains instructions for how to download a CSV file from Thoughtexchange and upload it to our application
 
+`report_generator/template/review.html` - HTML page that shows the uploaded Thoughtexchange data and forms to check off relevant responses, complete a summary, add action items, and enter an email to send the final report to
 
+`report_generator/template/success.html` - HTML page that shows the generated email sent to the email address provided
+
+`report_generator/template/email.html` - HTML email template sent to the email address provided
 
 ## How to run this project on your own local computer using the Terminal
 
