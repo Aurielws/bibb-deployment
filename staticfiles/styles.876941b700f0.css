@@ -1,0 +1,52 @@
+.sidebar-nav {
+  margin-top: 20px;
+  padding: 0;
+  list-style: none;
+}
+
+.tab-container {
+  display: flex;
+  width: 100%;
+}
+
+
+/* Style the tab navigation */
+.nav {
+  flex: auto;
+  float: left;
+  border: 1px solid #ccc;
+  background-color: #f1f1f1;
+  width: 30%;
+}
+
+/* Style the tabs that are used to open the tab content */
+.tab-pane {
+  display: block;
+  padding: 22px 16px;
+  width: 100%;
+  border: 1px solid #ccc;
+  outline: none;
+  text-align: left;
+  transition: 0.3s;
+}
+
+/* Change background color of tabs on hover */
+.tab-pane:hover {
+  background-color: #ddd;
+}
+
+/* Create an active/current tab class */
+.tab-pane.active {
+  background-color: #ccc;
+}
+
+/* Style the tab content */
+.tab-content {
+  flex: auto;
+  float: left;
+  background-color: #ccc;
+  padding: 0px 12px;
+  border: 1px solid #ccc;
+  width: 70%;
+  border-left: none;
+}
