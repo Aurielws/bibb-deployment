@@ -29,6 +29,8 @@ SECRET_KEY = env.str("SECRET_KEY", "my secret key")
 DEBUG = env.bool("DEBUG", False) == 'True'
 
 ALLOWED_HOSTS = env.list("HOST", default=[])
+ALLOWED_HOSTS = [".herokuapp.com"]
+
 
 # Application definition
 
