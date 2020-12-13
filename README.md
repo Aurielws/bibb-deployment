@@ -36,16 +36,16 @@
 
         git clone git@github.com:aurielws/bibb-deployment.git
 
-or 
+        or 
         
         git clone https://github.com/Aurielws/bibb-deployment
 
 2. Install virtualenvwrapper (if not already installed)
 
-Unix:
+        Unix:
         sudo pip3 install virtualenv
 
-Windows:
+        Windows:
         
         pip3 install virtualenv
 
@@ -55,11 +55,11 @@ Windows:
 
 4. Activate virtual environment
 
-Unix:
+        Unix:
 
         source venv/bin/activate
         
-Windows:
+        Windows:
 
         .\venv\Scripts\activate
 
