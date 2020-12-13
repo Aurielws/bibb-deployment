@@ -32,11 +32,11 @@
 
 ## How to run this project on your own local computer using the Terminal
 
-1. Clone this repository
+1. Clone this repository in the desired directory
 
         git clone git@github.com:aurielws/bibb-deployment.git
 
-        or 
+* or 
         
         git clone https://github.com/Aurielws/bibb-deployment
 
@@ -50,11 +50,15 @@
         
         pip3 install virtualenv
 
-3. Create virtual environment
+3. Move inside the project
+
+        cd bibb-deployment
+        
+4. Create virtual environment
 
         virtualenv venv -p python3
 
-4. Activate virtual environment
+5. Activate virtual environment
 
 * Unix:
 
@@ -64,16 +68,16 @@
 
         .\venv\Scripts\activate
 
-5. Install required packages
+6. Install required packages
 
         pip3 install -r requirements.txt
 
-6. Run project
+7. Run project
 
         python3 manage.py migrate
         python3 manage.py runserver
 
-7. Deactivate virtual environment when done
+8. Deactivate virtual environment when done
 
         deactivate
 
