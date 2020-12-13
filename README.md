@@ -42,11 +42,11 @@
 
 2. Install virtualenvwrapper (if not already installed)
 
-&nbsp;Unix:
+* Unix:
         
         sudo pip3 install virtualenv
 
-&nbsp;Windows:
+* Windows:
         
         pip3 install virtualenv
 
@@ -56,11 +56,11 @@
 
 4. Activate virtual environment
 
-&nbsp;Unix:
+* Unix:
 
         source venv/bin/activate
         
-&nbsp;Windows:
+* Windows:
 
         .\venv\Scripts\activate
 
