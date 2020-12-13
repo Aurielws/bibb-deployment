@@ -42,7 +42,7 @@
 
 2. Install virtualenvwrapper (if not already installed)
 
-* Unix:
+* Linux, Mac:
         
         sudo pip3 install virtualenv
 
@@ -60,7 +60,7 @@
 
 5. Activate virtual environment
 
-* Unix:
+* Linux, Mac:
 
         source venv/bin/activate
         
