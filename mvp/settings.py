@@ -29,7 +29,7 @@ SECRET_KEY = env.str("SECRET_KEY", "my secret key")
 DEBUG = env.bool("DEBUG", False) == 'True'
 
 ALLOWED_HOSTS = env.list("HOST", default=[])
-ALLOWED_HOSTS = [".herokuapp.com"]
+ALLOWED_HOSTS = [".herokuapp.com","127.0.0.1","localhost"]
 
 
 # Application definition
@@ -80,13 +80,13 @@ WSGI_APPLICATION = 'mvp.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.sqlite3',
-#         'NAME': BASE_DIR / 'db.sqlite3',
-#     }
-# }
-DATABASES = {"default": env.db()}
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': str(os.path.join(BASE_DIR, "db.sqlite3")),
+    }
+}
+# DATABASES = {"default": env.db()}
 
 # Password validation
 # https://docs.djangoproject.com/en/3.1/ref/settings/#auth-password-validators
@@ -140,8 +140,8 @@ EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_USE_TLS = True
 EMAIL_PORT = 587
-EMAIL_HOST_USER = 'cs96.test@gmail.com'
-EMAIL_HOST_PASSWORD = 'cs96pass!'
+EMAIL_HOST_USER = ''
+EMAIL_HOST_PASSWORD = ''
 
 SESSION_ENGINE = 'django.contrib.sessions.backends.file'
 

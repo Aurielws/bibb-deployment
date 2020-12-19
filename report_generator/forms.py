@@ -1,16 +1,18 @@
 from django import forms
-from django.forms import ModelForm
+from django.forms import ModelForm, TextInput, PasswordInput
 from crispy_forms.bootstrap import Tab, TabHolder, Field
 from crispy_forms.helper import FormHelper
 from crispy_forms.layout import Submit, Layout
 
+
 class UploadFileForm(forms.Form):
     file = forms.FileField()
+
 
 class ResultsForm(forms.Form):
     def __init__(self, thought_choices, *args, **kwargs):
         super(ResultsForm, self).__init__(*args, **kwargs)
-        thought_choices_sorted = {"0":[], "1":[], "2":[], "3":[], "4":[]}
+        thought_choices_sorted = {"0": [], "1": [], "2": [], "3": [], "4": []}
         for row in thought_choices:
             # need to check what happens if a thought has no star score (NaN??)
             category = str(int(float(row[2])))
@@ -35,22 +37,21 @@ class ResultsForm(forms.Form):
             )
         )
 
-
     thoughts4 = forms.MultipleChoiceField(choices=(),
-                                             widget=forms.CheckboxSelectMultiple(),
-                                             required=False)
+                                          widget=forms.CheckboxSelectMultiple(),
+                                          required=False)
     thoughts3 = forms.MultipleChoiceField(choices=(),
-                                             widget=forms.CheckboxSelectMultiple(),
-                                             required=False)
+                                          widget=forms.CheckboxSelectMultiple(),
+                                          required=False)
     thoughts2 = forms.MultipleChoiceField(choices=(),
-                                             widget=forms.CheckboxSelectMultiple(),
-                                             required=False)
+                                          widget=forms.CheckboxSelectMultiple(),
+                                          required=False)
     thoughts1 = forms.MultipleChoiceField(choices=(),
-                                             widget=forms.CheckboxSelectMultiple(),
-                                             required=False)
+                                          widget=forms.CheckboxSelectMultiple(),
+                                          required=False)
     thoughts0 = forms.MultipleChoiceField(choices=(),
-                                             widget=forms.CheckboxSelectMultiple(),
-                                             required=False)
+                                          widget=forms.CheckboxSelectMultiple(),
+                                          required=False)
 
     summary = forms.CharField(label='Write your summary here.',
                               max_length=1000,
@@ -61,5 +62,18 @@ class ResultsForm(forms.Form):
     recipient = forms.EmailField(label="Email recipient here:")
 
 
-class EmailForm(forms.Form):
+    username = forms.EmailField(
+        label="Your Email Address", required=True,
+        widget=forms.TextInput(attrs={'placeholder':'ex:test','autocomplete': 'off'}))
+    password = forms.CharField(
+        label="Your Message", required=True,
+        widget=forms.PasswordInput(attrs={'placeholder':'********','autocomplete': 'off','data-toggle': 'password'}))
+
+
+class EmailForm(forms.Form):  # recipient
     recipient = forms.EmailField(label="Email recipient here:")
+
+
+class EmailLoginForm(forms.Form):  # sender
+    username = forms.CharField(label="Username:")
+    password = forms.CharField(label="Password:")

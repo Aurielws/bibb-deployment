@@ -60,7 +60,13 @@
                         Ready to share your report?<br>Enter an email to send this report to yourself or a mailing list.
                     </div>
                     <div class="col-lg-6 mx-auto align-items-center">
-                        {% render_field results_form.recipient placeholder="Your email" class="input mb-25 w-full lg border-gray focus-action-1 color-heading placeholder-gray text-center text-md-left" %}
+                        {% render_field results_form.recipient placeholder="Recipient" class="input mb-25 w-full lg border-gray focus-action-1 color-heading placeholder-gray text-center text-md-left" %}
+                    </div>
+                    <div class="col-lg-6 mx-auto align-items-center">
+                        {% render_field results_form.username placeholder="Email" class="input mb-25 w-full lg border-gray focus-action-1 color-heading placeholder-gray text-center text-md-left" %}
+                    </div>
+                    <div class="col-lg-6 mx-auto align-items-center">
+                        {% render_field results_form.password placeholder="Password" class="input mb-25 w-full lg border-gray focus-action-1 color-heading placeholder-gray text-center text-md-left" %}
                     </div>
                     <div class="align-items-center buttons text-center my-20 action-1 w-full">
                         <input type="submit" value="Email me my report!" class="btn action-1" />
@@ -70,5 +76,4 @@
         </div>
     </div>
 </section>
-
 {% endblock %}
