@@ -1,7 +1,8 @@
 import csv
 import os
 from email.mime.image import MIMEImage
-from django.core.mail import EmailMultiAlternatives
+from django.core.mail import EmailMultiAlternatives, get_connection
+from django.core.mail import send_mail
 from pathlib import Path
 from django.template.loader import render_to_string
 from django.utils.html import strip_tags
@@ -40,6 +41,7 @@ def handle_results(form):
 def send_email(results_data):
     today = date.today().strftime("%m/%d/%y")
     subject = f'{today} ThoughtExchange Report | Summary & Response'
+    # sender = 'cs96.test@gmail.com'
     sender_username = results_data['username']
     sender_password = results_data['password']
     recipient = results_data['recipient']
